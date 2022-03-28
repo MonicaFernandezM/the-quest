@@ -2,7 +2,7 @@ import sys
 import pygame as pg
 from ship import Ship 
 from asteroid import Asteroid
-import game_functions as gf
+import game_functions as gamef
 
 def run_game():
     pg.init()
@@ -12,7 +12,7 @@ def run_game():
     pg.display.set_caption("The Quest")
 
     while True:
-        gf.check_events()
+        #gamef.check_events()
         screen.fill((127, 255, 212))
         ship.create()
         asteroid.create()

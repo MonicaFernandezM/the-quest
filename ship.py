@@ -1,4 +1,5 @@
-import pygame as pg
+import pygame as pg 
+import sys
 
 class Ship():
     def __init__(self, screen):
