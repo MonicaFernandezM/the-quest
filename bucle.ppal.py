@@ -6,7 +6,7 @@ import game_functions as gamef
 
 def run_game():
     pg.init()
-
+    clock = pg.time.Clock()
     screen = pg.display.set_mode((1000, 750)) #1300, 750
     ship = Ship(screen)
     asteroid = Asteroid(screen)
@@ -14,7 +14,9 @@ def run_game():
     pg.display.set_caption("The Quest")
     
     while True:
+        clock.tick(60)
         gamef.check_events(ship)
-        gamef.update_screen(screen, ship, asteroid)
+        gamef.setup_screen(screen, ship, asteroid)
+        ship.move()
 
 run_game()
