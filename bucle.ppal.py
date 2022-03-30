@@ -6,17 +6,15 @@ import game_functions as gamef
 
 def run_game():
     pg.init()
-    screen = pg.display.set_mode((1300, 750))
+
+    screen = pg.display.set_mode((1000, 750)) #1300, 750
     ship = Ship(screen)
     asteroid = Asteroid(screen)
-    pg.display.set_caption("The Quest")
 
+    pg.display.set_caption("The Quest")
+    
     while True:
-        #gamef.check_events()
-        screen.fill((127, 255, 212))
-        ship.create()
-        asteroid.create()
-        pg.display.flip()
+        gamef.check_events(ship)
+        gamef.update_screen(screen, ship, asteroid)
 
 run_game()
-
