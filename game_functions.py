@@ -1,4 +1,3 @@
-import sys
 import pygame as pg
 
 def check_events(ship):
@@ -6,7 +5,6 @@ def check_events(ship):
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
-            sys.exit()
         
 def setup_screen(screen, ship, asteroid):
 
