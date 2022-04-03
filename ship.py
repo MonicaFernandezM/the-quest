@@ -30,11 +30,11 @@ class Ship():
     def move(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_UP]:
-            if self.rect.top + self.velocity > self.screen_rect.top:
+            if self.rect.top + self.velocity > self.screen_rect.top + 10:
                 self.increaseVelocity()
                 self.rect.top -= self.velocity
         elif keys[pg.K_DOWN]:
-            if self.rect.bottom - self.velocity < self.screen_rect.bottom:
+            if self.rect.bottom - self.velocity < self.screen_rect.bottom - 10:
                 self.increaseVelocity()
                 self.rect.bottom += self.velocity
         else:
