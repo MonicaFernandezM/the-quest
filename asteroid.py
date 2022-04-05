@@ -3,21 +3,32 @@ import random
 
 class Asteroid():
 
-    def __init__(self, screen, width, height):
+    images = ['images/icons8-planet-100.png', 
+              'images/icons8-baby-yoda-50.png', 
+              'images/icons8-ciencia-ficción-50.png', 
+              'images/icons8-estrella-de-la-muerte-50.png', 
+              'images/icons8-extraterrestre-50.png', 
+              'images/icons8-satélites-50.png']
+
+    def __init__(self, screen):
         self.screen = screen
         self.velocity = 5
-        # self.x = random.randint(750, 0)
 
         # load bmp image and get rectangle
-        self.image = pg.image.load('images/icons8-planet-100.png')
+        image_random = random.randint(1, len(self.images))
+        self.image = pg.image.load(self.images[image_random - 1])
+        len_random = random.randint(10, 80)
+        self.image = pg.transform.scale(self.image, (len_random, len_random))
         self.rect = self.image.get_rect() # asteroid real size
-        self.rect.width = width
-        self.rect.height = height
+
         self.screen_rect = screen.get_rect()
 
         #put asteroid on the right side of window
         self.rect.centery = self.screen_rect.centery
         self.rect.right = self.screen_rect.right
+
+    #def randomize(self):
+        
 
     def create(self):
         self.screen.blit(self.image, self.rect)

@@ -10,7 +10,7 @@ def run_game():
     clock = pg.time.Clock()
     screen = pg.display.set_mode((1000, 750)) #1300, 750
     ship = Ship(screen)
-    asteroid = Asteroid(screen, 50, 50)
+    asteroid = Asteroid(screen)
 
     pg.display.set_caption("The Quest")
 
@@ -20,6 +20,6 @@ def run_game():
         gamef.setup_screen(screen, ship, asteroid)
         ship.move()
         asteroid.move()
-        print("Collide ", asteroid.intersection(ship))
+        #print("Collide ", asteroid.intersection(ship))
 
 run_game()
