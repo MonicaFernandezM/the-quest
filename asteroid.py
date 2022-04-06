@@ -12,7 +12,7 @@ class Asteroid():
 
     def __init__(self, screen):
         self.screen = screen
-        self.velocity = 5
+        self.velocity = random.randint(2, 10)
 
         # load bmp image and get rectangle
         image_random = random.randint(1, len(self.images))
