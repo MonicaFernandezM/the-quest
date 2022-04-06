@@ -35,6 +35,10 @@ class Asteroid():
         else:
             self.rect.right = self.screen_rect.right
 
+    def remove(self):
+        self.rect.top = self.screen_rect.bottom
+        self.rect.right = self.screen_rect.left
+
     def intersection(self, ship) -> bool:
         if self.rect.width > ship.rect.width:
             smaller_width = ship
