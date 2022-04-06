@@ -17,18 +17,14 @@ class Asteroid():
         # load bmp image and get rectangle
         image_random = random.randint(1, len(self.images))
         self.image = pg.image.load(self.images[image_random - 1])
-        len_random = random.randint(10, 80)
+        len_random = random.randint(15, 80)
         self.image = pg.transform.scale(self.image, (len_random, len_random))
         self.rect = self.image.get_rect() # asteroid real size
 
         self.screen_rect = screen.get_rect()
-
-        #put asteroid on the right side of window
-        self.rect.centery = self.screen_rect.centery
+        top_random = random.randint(0, self.screen_rect.height - len_random)
+        self.rect.top = top_random
         self.rect.right = self.screen_rect.right
-
-    #def randomize(self):
-        
 
     def create(self):
         self.screen.blit(self.image, self.rect)
@@ -40,7 +36,6 @@ class Asteroid():
             self.rect.right = self.screen_rect.right
 
     def intersection(self, ship) -> bool:
-        
         if self.rect.width > ship.rect.width:
             smaller_width = ship
             bigger_width = self
@@ -61,17 +56,3 @@ class Asteroid():
         bottom_collide = smaller_height.rect.y + smaller_height.rect.height in range(bigger_height.rect.y, bigger_height.rect.y + bigger_height.rect.height)
         
         return (left_collide or right_collide) and (top_collide or bottom_collide)
-
-    """
-    def aparicion(self):
-        for i in range (random.randint(2)):
-            radio = random.randint(5, 14)
-            self.asteroid.append(Asteroid(random.randint(radio, ancho - radio),
-                                    random.randint(radio, alto - radio),
-                                    self.pantalla, 
-                                    (random.randint(0,255),
-                                     random.randint(0,255),
-                                     random.randint(0,255)),
-                                     radio))
-            self.asteroid[i].vx = random.randint(5,15) * random.choice[(-1, 1)] 
-    """    
