@@ -16,7 +16,7 @@ class Ship():
         self.MAX_VEL = 10
 
         # load bmp image and get rectangle
-        self.image = pg.image.load('images/icons8-space-shuttle-100.png')
+        self.image = pg.image.load('images/icons8-lanzadera-de-espacio-96.png')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 

@@ -3,12 +3,16 @@ import random
 
 class Asteroid():
 
-    images = ['images/icons8-planet-100.png', 
-              'images/icons8-baby-yoda-50.png', 
-              'images/icons8-ciencia-ficción-50.png', 
-              'images/icons8-estrella-de-la-muerte-50.png', 
-              'images/icons8-extraterrestre-50.png', 
-              'images/icons8-satélites-50.png']
+    images = ['images/icons8-astronauta-96.png', 
+              'images/icons8-baby-yoda-96.png', 
+              'images/icons8-ciencia-ficción-96.png', 
+              'images/icons8-cometa-96.png', 
+              'images/icons8-estrella-de-la-muerte-96.png', 
+              'images/icons8-extraterrestre-96.png',
+              'images/icons8-grey-96.png',
+              'images/icons8-planeta-96.png',
+              'images/icons8-satélites-96.png',
+              'images/icons8-stormtrooper-96.png']
 
     def __init__(self, screen):
         self.screen = screen
