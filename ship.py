@@ -2,6 +2,7 @@ from shutil import move
 import pygame as pg 
 import sys
 from enum import Enum
+from settings import Settings 
 
 class Direction(Enum):
     UP = 1
@@ -12,11 +13,9 @@ class Direction(Enum):
 class Ship():
     def __init__(self, screen):
         self.screen = screen
-        self.velocity = 1
-        self.MAX_VEL = 10
 
         # load bmp image and get rectangle
-        self.image = pg.image.load('images/icons8-lanzadera-de-espacio-96.png')
+        self.image = pg.image.load(Settings().ship_image)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -30,16 +29,16 @@ class Ship():
     def move(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_UP]:
-            if self.rect.top + self.velocity > self.screen_rect.top + 10:
+            if self.rect.top + Settings.ship_velocity > self.screen_rect.top + 10:
                 self.increaseVelocity()
-                self.rect.top -= self.velocity
+                self.rect.top -= Settings.ship_velocity
         elif keys[pg.K_DOWN]:
-            if self.rect.bottom - self.velocity < self.screen_rect.bottom - 10:
+            if self.rect.bottom - Settings.ship_velocity < self.screen_rect.bottom - 10:
                 self.increaseVelocity()
-                self.rect.bottom += self.velocity
+                self.rect.bottom += Settings.ship_velocity
         else:
-            self.velocity = 1
+            Settings.ship_velocity = 1
 
     def increaseVelocity(self):
-        if self.velocity <= self.MAX_VEL:
-            self.velocity += 1
+        if Settings.ship_velocity <= Settings().max_ship_velocity:
+            Settings.ship_velocity += 1

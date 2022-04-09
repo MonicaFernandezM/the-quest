@@ -1,16 +1,16 @@
 import pygame as pg
 from game import Game
+from settings import Settings
 
 def run_game():
     pg.init()
-    FPS = 60
     clock = pg.time.Clock()
-    screen = pg.display.set_mode((1000, 750)) #1300, 750
+    screen = pg.display.set_mode((Settings().screen_width, Settings().screen_height)) 
     pg.display.set_caption("The Quest")
     game = Game(screen)
 
     while True:
-        clock.tick(FPS)
+        clock.tick(Settings().FPS)
         game.check_events()
         game.setup_screen()
         game.game_control()

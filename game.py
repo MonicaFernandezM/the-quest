@@ -1,11 +1,10 @@
 import pygame as pg
 from ship import Ship 
 from asteroid import Asteroid
+from settings import Settings
 
 class Game():
     def __init__(self, screen):
-        self.lives = 3
-        self.game_time = 60 # 60 seconds
         self.screen = screen
         self.ship = Ship(self.screen)
         self.asteroids = [
@@ -23,7 +22,7 @@ class Game():
 
     # Handling screen setup
     def setup_screen(self):
-        image = pg.image.load('images/polar-lights-ga4cf63a15_1920.jpg')
+        image = pg.image.load(Settings().background_image)
         self.screen.blit(image, (0,0))
         
         self.ship.create()
@@ -35,8 +34,8 @@ class Game():
 
     # Handling game duration and user lives
     def decrease_life(self):
-        self.lives -= 1
-        if self.lives == 0:
+        Settings().lives -= 1
+        if Settings().lives == 0:
             print("Game Over")
     
     # Handling game structure
@@ -48,9 +47,8 @@ class Game():
         for asteroid in self.asteroids:
             if asteroid.intersection(self.ship):
                 self.asteroids.remove(asteroid)
-                #asteroid.remove()
                 self.decrease_life()
 
     def create_asteroids(self):
-        if len(self.asteroids) < 20:
+        if len(self.asteroids) < Settings().max_asteroid:
             self.asteroids.append(Asteroid(self.screen))

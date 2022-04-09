@@ -1,27 +1,17 @@
 import pygame as pg
 import random 
+from settings import Settings 
 
 class Asteroid():
 
-    images = ['images/icons8-astronauta-96.png', 
-              'images/icons8-baby-yoda-96.png', 
-              'images/icons8-ciencia-ficción-96.png', 
-              'images/icons8-cometa-96.png', 
-              'images/icons8-estrella-de-la-muerte-96.png', 
-              'images/icons8-extraterrestre-96.png',
-              'images/icons8-grey-96.png',
-              'images/icons8-planeta-96.png',
-              'images/icons8-satélites-96.png',
-              'images/icons8-stormtrooper-96.png']
-
     def __init__(self, screen):
         self.screen = screen
-        self.velocity = random.randint(2, 10)
+        self.velocity = random.randint(Settings().max_asteroid_velocity, Settings().min_asteorid_velocity)
         
         # load bmp image and get rectangle
-        image_random = random.randint(1, len(self.images))
-        self.image = pg.image.load(self.images[image_random - 1])
-        len_random = random.randint(25, 80)
+        image_random = random.randint(1, len(Settings().asteroid_images))
+        self.image = pg.image.load(Settings().asteroid_images[image_random - 1])
+        len_random = random.randint(Settings().min_image_size, Settings().max_image_size)
         self.image = pg.transform.scale(self.image, (len_random, len_random))
         self.rect = self.image.get_rect() # asteroid real size
 
