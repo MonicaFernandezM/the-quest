@@ -13,5 +13,6 @@ def run_game():
         clock.tick(FPS)
         game.check_events()
         game.setup_screen()
+        game.game_control()
 
 run_game()

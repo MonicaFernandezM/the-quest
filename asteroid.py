@@ -17,15 +17,15 @@ class Asteroid():
     def __init__(self, screen):
         self.screen = screen
         self.velocity = random.randint(2, 10)
-
+        
         # load bmp image and get rectangle
         image_random = random.randint(1, len(self.images))
         self.image = pg.image.load(self.images[image_random - 1])
-        len_random = random.randint(15, 80)
+        len_random = random.randint(25, 80)
         self.image = pg.transform.scale(self.image, (len_random, len_random))
         self.rect = self.image.get_rect() # asteroid real size
 
-        self.screen_rect = screen.get_rect()
+        self.screen_rect = screen.get_rect() #random alturas
         top_random = random.randint(0, self.screen_rect.height - len_random)
         self.rect.top = top_random
         self.rect.right = self.screen_rect.right
