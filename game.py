@@ -41,6 +41,7 @@ class Game():
     # Handling game structure
     def game_control(self):
         self.check_intersection()
+        self.check_reached_end()
         self.create_asteroids()
 
     def check_intersection(self):
@@ -48,6 +49,12 @@ class Game():
             if asteroid.intersection(self.ship):
                 self.asteroids.remove(asteroid)
                 self.decrease_life()
+    
+    def check_reached_end(self):
+        for asteroid in self.asteroids:
+            if asteroid.reached_end():
+                self.asteroids.remove(asteroid)
+                
 
     def create_asteroids(self):
         if len(self.asteroids) < Settings().max_asteroid:
