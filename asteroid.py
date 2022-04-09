@@ -16,7 +16,7 @@ class Asteroid():
         self.rect = self.image.get_rect() # asteroid real size
 
         self.screen_rect = screen.get_rect() #random alturas
-        top_random = random.randint(0, self.screen_rect.height - len_random)
+        top_random = random.randint(Settings().bar_height, self.screen_rect.height - len_random)
         self.rect.top = top_random
         self.rect.right = self.screen_rect.right
 

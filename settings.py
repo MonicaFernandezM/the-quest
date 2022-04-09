@@ -35,4 +35,5 @@ class Settings:
         self.lives = 3
         self.max_asteroid = 15
         self.game_time = 60
+        self.bar_height = 50
         
