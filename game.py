@@ -14,14 +14,6 @@ class Game():
             Asteroid(self.screen)]
         self.font = pg.font.Font(None, 30)
 
-    # Handling user's events    
-    def check_events(self):
-        for event in pg.event.get():
-            if event.type == pg.QUIT or ( 
-                event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE
-            ):
-                pg.quit()
-
     # Handling screen setup
     def setup_screen(self):
         image = pg.image.load(Settings().background_image)
@@ -33,7 +25,6 @@ class Game():
         self.screen.blit(self.level_text, (10, 10))
         self.screen.blit(self.life_text, (Settings().screen_width / 3, 10))
         self.screen.blit(self.time_text, (Settings().screen_width * 2 / 3, 10))
-
 
         self.ship.create()
         self.ship.move()
