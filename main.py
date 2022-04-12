@@ -9,7 +9,8 @@ class Main():
         self.screen = pg.display.set_mode((Settings().screen_width, Settings().screen_height))
         self.screen.fill((6, 36, 117))
         pg.display.set_caption("The Quest")
-        self.run_level_selection()
+        #self.run_level_selection()
+        self.run_game()
 
     def run_level_selection(self):
         while True:

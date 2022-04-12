@@ -7,7 +7,7 @@ class Asteroid():
     def __init__(self, screen):
         self.screen = screen
         self.velocity = random.randint(Settings().max_asteroid_velocity, Settings().min_asteorid_velocity)
-        
+    
         # load bmp image and get rectangle
         image_random = random.randint(1, len(Settings().asteroid_images))
         self.image = pg.image.load(Settings().asteroid_images[image_random - 1])
@@ -55,3 +55,4 @@ class Asteroid():
         bottom_collide = smaller_height.rect.y + smaller_height.rect.height in range(bigger_height.rect.y, bigger_height.rect.y + bigger_height.rect.height)
         
         return (left_collide or right_collide) and (top_collide or bottom_collide)
+
