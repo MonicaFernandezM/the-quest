@@ -36,4 +36,9 @@ class Settings:
         self.max_asteroid = 15
         self.game_time = 60
         self.bar_height = 50
+        self.image_explosion = [ 
+            'images/icons8-flash-bang-48.png',
+            'images/icons8-flash-bang-96.png',
+            'images/icons8-explosión-de-fuegos-artificiales-96.png',
+            'images/icons8-explosión-de-fuegos-artificiales-48.png']
         
