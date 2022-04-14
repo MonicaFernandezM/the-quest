@@ -1,13 +1,6 @@
 import pygame as pg 
 import sys
-from enum import Enum
 from settings import Settings 
-
-class Direction(Enum):
-    UP = 1
-    DOWN = 2
-    LEFT = 3
-    RIGHT = 4
 
 class Ship():
     def __init__(self, screen):
