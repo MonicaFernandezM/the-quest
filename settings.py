@@ -32,6 +32,7 @@ class Settings:
 
         # Game Settings
         self.FPS = 60
+        self.max_game_time = 20
         self.lives = 3
         self.max_asteroid = 15
         self.game_time = 60

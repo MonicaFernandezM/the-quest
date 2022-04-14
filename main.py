@@ -23,11 +23,12 @@ class Main():
     def run_game(self):
         clock = pg.time.Clock()
         game = Game(self.screen)
-
+        game.setup_screen()
+        
         while True:
             clock.tick(Settings().FPS)
             self.check_events()
-            game.setup_screen()
+            game.update_screen()
             game.game_control()
     
     # Handling user's events    

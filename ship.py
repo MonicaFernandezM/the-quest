@@ -1,4 +1,3 @@
-from shutil import move
 import pygame as pg 
 import sys
 from enum import Enum
@@ -13,7 +12,7 @@ class Direction(Enum):
 class Ship():
     def __init__(self, screen):
         self.screen = screen
-
+    
         # load bmp image and get rectangle
         self.image = pg.image.load(Settings().ship_image)
         self.rect = self.image.get_rect()
