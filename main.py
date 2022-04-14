@@ -23,7 +23,6 @@ class Main():
     def run_game(self):
         clock = pg.time.Clock()
         game = Game(self.screen)
-        game.setup_screen()
         
         while True:
             clock.tick(Settings().FPS)
