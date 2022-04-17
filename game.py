@@ -3,9 +3,15 @@ from ship import Ship
 from asteroid import Asteroid
 from settings import Settings
 import time 
+from enum import Enum
+
+class Level(Enum):
+    One = 1
+    Two = 2
+    Three = 3
 
 class Game():
-    def __init__(self, screen):
+    def __init__(self, screen, level):
         self.max_time = Settings().max_game_time
         self.seconds = 0
         self.screen = screen

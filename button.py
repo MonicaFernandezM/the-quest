@@ -9,12 +9,14 @@ class State(Enum):
 
 class Button():
     def __init__(self, surface):
-
         self.state = State.unselected
         self.surface = surface
 
-    def set_selected(self):
-        self.state = State.selected
+    def set_state(self, state):
+        self.state = state
+
+    def get_state(self) -> State:
+        return self.state
 
     def draw_button(self, left, top, width, height):
         if self.state == State.unselected:
