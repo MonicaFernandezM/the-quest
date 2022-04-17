@@ -4,6 +4,7 @@ from asteroid import Asteroid
 from settings import Settings
 import time 
 from enum import Enum
+import random
 
 class Level(Enum):
     One = 1
@@ -26,12 +27,14 @@ class Game():
             self.max_asteroids = Settings().max_asteroid_one
             self.asteroids = [Asteroid(self.screen)]
             self.bg_image = pg.image.load(Settings().background_image_level_one)
+            self.velocity = random.randint(Settings().min_asteorid_velocity_level_one, Settings().max_asteroid_velocity_level_one)
         elif level == Level.Two:
             self.max_asteroids = Settings().max_asteroid_two
             self.asteroids = [
                 Asteroid(self.screen), 
                 Asteroid(self.screen)]
             self.bg_image = pg.image.load(Settings().background_image_level_two)
+            self.velocity = random.randint(Settings().min_asteorid_velocity_level_two, Settings().max_asteroid_velocity_level_two)
         elif level == Level.Three:
             self.max_asteroids = Settings().max_asteroid_three
             self.asteroids = [
@@ -39,6 +42,7 @@ class Game():
                 Asteroid(self.screen),
                 Asteroid(self.screen)]
             self.bg_image = pg.image.load(Settings().background_image_level_three)
+            self.velocity = random.randint(Settings().min_asteorid_velocity_level_three, Settings().max_asteroid_velocity_level_three)
 
         self.bg_rect = self.bg_image.get_rect()
 

@@ -48,9 +48,15 @@ class Settings:
         #nivel 1
         self.max_asteroid_one = 5
         self.background_image_level_one = 'images/milky-way-g0a2730173_1920.jpg'
+        self.min_asteorid_velocity_level_one = 2
+        self.max_asteroid_velocity_level_one = 4
         #nivel 2
         self.max_asteroid_two = 8
         self.background_image_level_two = 'images/cosmos-g47676c63d_1920.jpg'
+        self.min_asteorid_velocity_level_two = 3
+        self.max_asteroid_velocity_level_two = 5
         #nivel 3
         self.max_asteroid_three = 11
         self.background_image_level_three = 'images/galaxy-g9aed1def3_1280.jpg'
+        self.min_asteorid_velocity_level_three = 4
+        self.max_asteroid_velocity_level_three = 8
