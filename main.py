@@ -10,7 +10,6 @@ class Main():
     def __init__(self):
         pg.init()
         self.screen = pg.display.set_mode((Settings().screen_width, Settings().screen_height))
-        self.background = pg.Surface((Settings().screen_width, Settings().screen_height))
         self.bg_level_image = pg.image.load(Settings().button_image)
         self.bg_level_rect = self.bg_level_image.get_rect()
         pg.display.set_caption("The Quest")
@@ -18,16 +17,16 @@ class Main():
         self.run_level_selection()
 
     def run_level_selection(self):
-        self.level_one_button = Button(self.background)
-        self.level_two_button = Button(self.background)
-        self.level_three_button = Button(self.background)
-        self.level_four_button = Button(self.background)
+        self.level_one_button = Button(self.screen)
+        self.level_two_button = Button(self.screen)
+        self.level_three_button = Button(self.screen)
+        self.level_four_button = Button(self.screen)
         self.level_one_button.set_state(State.selected)
 
         while True:
             self.check_events()
-            self.screen.blit(self.background, (0, 0))
-            self.background.blit(self.bg_level_image, self.bg_level_rect)
+            self.screen.blit(self.bg_level_image, self.bg_level_rect)
+
             self.level_text = self.font.render("THE QUEST", True, (255, 255, 255))
             self.screen.blit(self.level_text, (10, 10)) 
             

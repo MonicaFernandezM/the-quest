@@ -27,12 +27,12 @@ class Settings:
         self.max_image_size = 80 
         self.min_image_size = 25
         self.max_asteroid_velocity = 2
-        self.min_asteorid_velocity = 10 
+        self.min_asteorid_velocity = 8
 
 
         # Game Settings
         self.FPS = 60
-        self.max_game_time = 60
+        self.max_game_time = 30
         self.lives = 3
         self.game_time = 60
         self.bar_height = 50
