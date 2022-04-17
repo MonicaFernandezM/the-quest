@@ -12,20 +12,34 @@ class Level(Enum):
 
 class Game():
     def __init__(self, screen, level):
-        self.max_time = Settings().max_game_time
         self.seconds = 0
         self.screen = screen
         self.ship = Ship(self.screen)
-        self.asteroids = [
-            Asteroid(self.screen), 
-            Asteroid(self.screen),
-            Asteroid(self.screen)]
+        self.max_time = Settings().max_game_time
         self.font = pg.font.Font(None, 30)
         self.punctuation = 0
         self.lives = Settings().lives
         self.game_over = False
         self.start_ticks = pg.time.get_ticks() #starter tick
-        self.bg_image = pg.image.load(Settings().background_image)
+        
+        if level == Level.One:
+            self.max_asteroids = Settings().max_asteroid_one
+            self.asteroids = [Asteroid(self.screen)]
+            self.bg_image = pg.image.load(Settings().background_image_level_one)
+        elif level == Level.Two:
+            self.max_asteroids = Settings().max_asteroid_two
+            self.asteroids = [
+                Asteroid(self.screen), 
+                Asteroid(self.screen)]
+            self.bg_image = pg.image.load(Settings().background_image_level_two)
+        elif level == Level.Three:
+            self.max_asteroids = Settings().max_asteroid_three
+            self.asteroids = [
+                Asteroid(self.screen), 
+                Asteroid(self.screen),
+                Asteroid(self.screen)]
+            self.bg_image = pg.image.load(Settings().background_image_level_three)
+
         self.bg_rect = self.bg_image.get_rect()
 
     # Handling screen update
@@ -82,7 +96,7 @@ class Game():
                 self.punctuation += 10
 
     def create_asteroids(self):
-        if len(self.asteroids) < Settings().max_asteroid:
+        if len(self.asteroids) < self.max_asteroids:
             self.asteroids.append(Asteroid(self.screen))
 
     def show_explosion(self):

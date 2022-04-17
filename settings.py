@@ -34,7 +34,6 @@ class Settings:
         self.FPS = 60
         self.max_game_time = 60
         self.lives = 3
-        self.max_asteroid = 15
         self.game_time = 60
         self.bar_height = 50
         self.image_explosion = [ 
@@ -45,3 +44,13 @@ class Settings:
 
         #button 
         self.button_image = 'images/orion-nebula-g53ac9bb3d_1920.jpg'
+
+        #nivel 1
+        self.max_asteroid_one = 5
+        self.background_image_level_one = 'images/milky-way-g0a2730173_1920.jpg'
+        #nivel 2
+        self.max_asteroid_two = 8
+        self.background_image_level_two = 'images/cosmos-g47676c63d_1920.jpg'
+        #nivel 3
+        self.max_asteroid_three = 11
+        self.background_image_level_three = 'images/galaxy-g9aed1def3_1280.jpg'
