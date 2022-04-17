@@ -42,4 +42,6 @@ class Settings:
             'images/icons8-flash-bang-96.png',
             'images/icons8-explosión-de-fuegos-artificiales-96.png',
             'images/icons8-explosión-de-fuegos-artificiales-48.png']
-        
+
+        #button 
+        self.button_image = 'images/orion-nebula-g53ac9bb3d_1920.jpg'

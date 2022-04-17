@@ -8,9 +8,9 @@ class Main():
     def __init__(self):
         pg.init()
         self.screen = pg.display.set_mode((Settings().screen_width, Settings().screen_height))
-        #self.screen.fill((6, 36, 117))
         self.background = pg.Surface((Settings().screen_width, Settings().screen_height))
-        self.background.fill((6, 36, 117))
+        self.bg_level_image = pg.image.load(Settings().button_image)
+        self.bg_level_rect = self.bg_level_image.get_rect()
         pg.display.set_caption("The Quest")
         self.font = pg.font.Font(None, 30) 
         self.run_level_selection()
@@ -19,15 +19,19 @@ class Main():
     def run_level_selection(self):
         self.level_one_button = Button(self.background)
         self.level_two_button = Button(self.background)
+        self.level_tree_button = Button(self.background)
 
         while True:
             self.check_events()
             self.screen.blit(self.background, (0, 0))
+            self.background.blit(self.bg_level_image, self.bg_level_rect)
             self.level_text = self.font.render("Mensaje de bienvenida", True, (255, 255, 255))
             self.screen.blit(self.level_text, (10, 10)) 
-            self.level_one_button.draw_button(10, 10, 50, 30)
+            self.level_one_button.draw_button(400, 300, 150, 100)
             self.level_two_button.set_selected()
-            self.level_two_button.draw_button(10, 60, 50, 30)
+            self.level_two_button.draw_button(400, 450, 150, 100)
+            self.level_tree_button.set_selected()
+            self.level_tree_button.draw_button(400, 150, 150, 100)
             pg.display.flip()
 
     def run_game(self):
