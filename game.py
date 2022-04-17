@@ -5,6 +5,7 @@ from settings import Settings
 import time 
 from enum import Enum
 import random
+from pygame import mixer
 
 class Level(Enum):
     One = 1
@@ -18,6 +19,8 @@ class Result(Enum):
 
 class Game():
     def __init__(self, screen, level):
+        pg.mixer.init()
+        pg.mixer.music.load(Settings().music_explotion)
         self.seconds = 0
         self.screen = screen
         self.ship = Ship(self.screen)
@@ -120,10 +123,12 @@ class Game():
         self.explosion_rect.centerx = self.ship.rect.centerx
         self.explosion_rect.centery = self.ship.rect.centery
         self.screen.blit(self.explosion_image, self.explosion_rect)
+        pg.mixer.music.play()
+        pg.mixer.music.set_volume(0.6)
 
     def show_time(self):
         self.seconds = (pg.time.get_ticks() - self.start_ticks) / 1000
-        if self.seconds >= self.max_time:
+        if self.seconds >= self.max_time and self.game_result != Result.Lose:
             self.game_result = Result.Win
     
     def check_asteroids_avoided(self):

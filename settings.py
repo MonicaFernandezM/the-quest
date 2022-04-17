@@ -60,3 +60,13 @@ class Settings:
         self.background_image_level_three = 'images/galaxy-g9aed1def3_1280.jpg'
         self.min_asteorid_velocity_level_three = 4
         self.max_asteroid_velocity_level_three = 8
+
+        self.music_explotion = 'music/sfx-impact27.mp3'
+
+"""
+file = 'some.mp3'
+pygame.init()
+pygame.mixer.init()/
+pygame.mixer.music.load(file)
+pygame.mixer.music.play(-1) # If the loops is -1 then the music will repeat indefinitely.
+"""
