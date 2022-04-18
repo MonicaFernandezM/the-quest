@@ -32,7 +32,7 @@ class Settings:
 
         # Game Settings
         self.FPS = 60
-        self.max_game_time = 30
+        self.max_game_time = 5#30
         self.lives = 3
         self.game_time = 60
         self.bar_height = 50
@@ -62,11 +62,3 @@ class Settings:
         self.max_asteroid_velocity_level_three = 8
 
         self.music_explotion = 'music/sfx-impact27.mp3'
-
-"""
-file = 'some.mp3'
-pygame.init()
-pygame.mixer.init()/
-pygame.mixer.music.load(file)
-pygame.mixer.music.play(-1) # If the loops is -1 then the music will repeat indefinitely.
-"""

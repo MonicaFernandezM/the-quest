@@ -67,7 +67,7 @@ class Main():
                 event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE
             ):
                 pg.quit()
-            elif event.type == pg.KEYDOWN and event.key == pg.K_TAB:
+            elif event.type == pg.KEYDOWN and (event.key == pg.K_TAB or event.key == pg.K_DOWN):
                 if self.level_one_button.get_state() == State.selected:
                     print("Boton 1")
                     self.level_two_button.set_state(State.selected)

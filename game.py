@@ -81,7 +81,9 @@ class Game():
             self.show_explosion()
         
         elif self.game_result == Result.Win:
+            
             self.ship.rotate_ship(180)
+            pg.time.wait(260)
 
         pg.display.update()
 
@@ -98,7 +100,7 @@ class Game():
         self.check_reached_end()
         self.create_asteroids()
         self.show_time()
-        self.check_asteroids_avoided()
+        #self.check_asteroids_avoided()
 
     def check_intersection(self):
         for asteroid in self.asteroids:
@@ -127,10 +129,13 @@ class Game():
         pg.mixer.music.set_volume(0.6)
 
     def show_time(self):
-        self.seconds = (pg.time.get_ticks() - self.start_ticks) / 1000
-        if self.seconds >= self.max_time and self.game_result != Result.Lose:
-            self.game_result = Result.Win
+        if self.game_result == Result.Nothing:
+            self.seconds = (pg.time.get_ticks() - self.start_ticks) / 1000
+            if self.seconds >= self.max_time:
+                self.game_result = Result.Win
     
+    """ End condition when avoided x number of asteroids 
     def check_asteroids_avoided(self):
         if self.avoided_asteroid > 5:
             self.game_result = Result.Win
+    """

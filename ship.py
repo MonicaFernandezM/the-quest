@@ -1,11 +1,19 @@
 import pygame as pg 
 import sys
 from settings import Settings 
+from enum import Enum
+
+class Rotation_Step(Enum):
+    Nothing = 0
+    One = 1
+    Two = 2
+    Three = 3
+    Final = 4
 
 class Ship():
     def __init__(self, screen):
         self.screen = screen
-    
+        self.rotation_step = Rotation_Step.Nothing
         # load bmp image and get rectangle
         self.image = pg.image.load(Settings().ship_image)
         self.rect = self.image.get_rect()
@@ -37,7 +45,26 @@ class Ship():
             Settings.ship_velocity += 1
 
     def rotate_ship(self, angle):
-        pos = ((self.rect.x + self.screen_rect.width - self.rect.width), self.rect.y)
+        width = self.rect.x + self.screen_rect.width - self.rect.width
+        if self.rotation_step == Rotation_Step.Nothing:
+            angle = angle / 4
+            width = self.rect.x + (self.screen_rect.width / 4) - self.rect.width
+            self.rotation_step = Rotation_Step.One
+        
+        elif self.rotation_step == Rotation_Step.One:
+            angle = angle / 2
+            width = self.rect.x + (self.screen_rect.width / 2) - self.rect.width
+            self.rotation_step = Rotation_Step.Two
+
+        elif self.rotation_step == Rotation_Step.Two:
+            angle = angle * 3 / 4 
+            width = self.rect.x + (self.screen_rect.width * 3 / 4) - self.rect.width
+            self.rotation_step = Rotation_Step.Three
+
+        elif self.rotation_step == Rotation_Step.Three:
+            self.rotation_step = Rotation_Step.Final 
+
+        pos = (width, self.rect.y)
         w = self.rect.x
         h = self.rect.y
         originPos = (w, h)
