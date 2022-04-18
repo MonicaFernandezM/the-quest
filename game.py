@@ -23,6 +23,7 @@ class Game():
         pg.mixer.music.load(Settings().music_explotion)
         self.seconds = 0
         self.screen = screen
+        self.screen_rect = screen.get_rect()
         self.ship = Ship(self.screen)
         self.max_time = Settings().max_game_time
         self.font = pg.font.Font(None, 30)
@@ -81,7 +82,7 @@ class Game():
             self.show_explosion()
         
         elif self.game_result == Result.Win:
-            
+            self.draw_planet()
             self.ship.rotate_ship(180)
             pg.time.wait(260)
 
@@ -133,6 +134,12 @@ class Game():
             self.seconds = (pg.time.get_ticks() - self.start_ticks) / 1000
             if self.seconds >= self.max_time:
                 self.game_result = Result.Win
+
+    def draw_planet(self):
+        planet_rect = self.screen_rect
+        planet_rect.centerx = self.screen_rect.width * 4 / 3    
+        pg.draw.circle(self.screen, (235, 205, 124), (planet_rect.centerx, planet_rect.centery), self.screen_rect.width / 2)
+        pg.draw.circle(self.screen, (240, 212, 139), (planet_rect.centerx + 25, planet_rect.centery), self.screen_rect.width / 2)
     
     """ End condition when avoided x number of asteroids 
     def check_asteroids_avoided(self):

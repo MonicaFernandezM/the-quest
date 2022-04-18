@@ -32,7 +32,7 @@ class Settings:
 
         # Game Settings
         self.FPS = 60
-        self.max_game_time = 5#30
+        self.max_game_time = 5
         self.lives = 3
         self.game_time = 60
         self.bar_height = 50

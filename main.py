@@ -15,6 +15,7 @@ class Main():
         pg.display.set_caption("The Quest")
         self.font = pg.font.Font(None, 30) 
         self.run_level_selection()
+        #self.run_game(Level.One)
 
     def run_level_selection(self):
         self.level_one_button = Button(self.screen)
