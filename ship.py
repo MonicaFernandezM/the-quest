@@ -23,7 +23,7 @@ class Ship():
         #put spaceship on the bottom of window
         self.rect.centery = self.screen_rect.centery
         self.rect.left = self.screen_rect.left
-        self.rotated = False
+        self.is_rotated = False
 
     def create(self):
         self.screen.blit(self.image, self.rect)
@@ -58,51 +58,15 @@ class Ship():
             self.increaseVelocity()
             self.rect.bottom += self.settings.ship_velocity
 
-
     def increaseVelocity(self):
         if self.settings.ship_velocity <= self.settings.max_ship_velocity:
             self.settings.ship_velocity += 1
 
-    def rotate_ship(self, angle):
-        width = self.rect.x + self.screen_rect.width - self.rect.width
-        if self.rotation_step == Rotation_Step.Nothing:
-            angle = angle / 4
-            width = self.rect.x + (self.screen_rect.width / 4) - self.rect.width
-            self.rotation_step = Rotation_Step.One
-        
-        elif self.rotation_step == Rotation_Step.One:
-            angle = angle / 2
-            width = self.rect.x + (self.screen_rect.width / 2) - self.rect.width
-            self.rotation_step = Rotation_Step.Two
+    def rotate_ship(self, angle, rect):
+        if self.is_rotated != True:
+            self.image = pg.transform.rotate(self.image, angle)
+            self.is_rotated = True
 
-        elif self.rotation_step == Rotation_Step.Two:
-            angle = angle * 3 / 4 
-            width = self.rect.x + (self.screen_rect.width * 3 / 4) - self.rect.width
-            self.rotation_step = Rotation_Step.Three
-
-        elif self.rotation_step == Rotation_Step.Three:
-            self.rotation_step = Rotation_Step.Final 
-
-        pos = (width, self.rect.y)
-        w = self.rect.x
-        h = self.rect.y
-        originPos = (w, h)
-
-        box = [pg.math.Vector2(p) for p in [(0, 0), (w, 0), (w, -h), (0, -h)]]
-        box_rotate = [p.rotate(angle) for p in box]
-        min_box = (min(box_rotate, key=lambda p: p[0])[0], min(box_rotate, key=lambda p: p[1])[1])
-        max_box = (max(box_rotate, key=lambda p: p[0])[0], max(box_rotate, key=lambda p: p[1])[1])
-
-        # calculate the translation of the pivot
-        pivot = pg.math.Vector2(originPos[0], -originPos[1])
-        pivot_rotate = pivot.rotate(angle)
-        pivot_move = pivot_rotate - pivot
-
-        # calculate the upper left origin of the rotated image
-        origin = (pos[0] - originPos[0] + min_box[0] - pivot_move[0], pos[1] - originPos[1] - max_box[1] + pivot_move[1])
-
-        # get a rotated image
-        rotated_image = pg.transform.rotate(self.image, angle)
-
-        # rotate and blit the image
-        self.screen.blit(rotated_image, origin)
+    def move_rotated_ship(self, velocity):
+        if self.rect.right + velocity < self.screen_rect.right:
+            self.rect.right += velocity

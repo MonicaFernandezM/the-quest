@@ -32,6 +32,7 @@ class Game():
         self.game_result  = Result.Nothing
         self.start_ticks = pg.time.get_ticks() #starter tick
         self.avoided_asteroid = 0
+        self.velocity = 5
         
         if level == Level.One:
             self.max_asteroids = self.settings.max_asteroid_one
@@ -83,8 +84,14 @@ class Game():
         
         elif self.game_result == Result.Win:
             self.draw_planet()
-            self.ship.rotate_ship(180)
-            pg.time.wait(260)
+            self.ship.create()
+            for asteroid in self.asteroids:
+                asteroid.create()
+                asteroid.move()
+
+            self.ship.rotate_ship(180, self.ship.rect)
+            self.ship.move_rotated_ship(self.velocity)
+            self.velocity += 5
 
         pg.display.update()
 
@@ -107,7 +114,8 @@ class Game():
         for asteroid in self.asteroids:
             if asteroid.intersection(self.ship):
                 self.asteroids.remove(asteroid)
-                self.decrease_life()
+                if self.game_result != Result.Win:
+                    self.decrease_life()
     
     def check_reached_end(self):
         for asteroid in self.asteroids:
@@ -116,7 +124,7 @@ class Game():
                 self.punctuation += asteroid.value
 
     def create_asteroids(self):
-        if len(self.asteroids) < self.max_asteroids:
+        if self.game_result != Result.Win and len(self.asteroids) < self.max_asteroids:
             self.asteroids.append(Asteroid(self.screen))
 
     def show_explosion(self):
@@ -126,7 +134,7 @@ class Game():
         self.explosion_rect.centery = self.ship.rect.centery
         self.screen.blit(self.explosion_image, self.explosion_rect)
         pg.mixer.music.play()
-        pg.mixer.music.set_volume(0.6)
+        pg.mixer.music.set_volume(0.9)
 
     def show_time(self):
         if self.game_result == Result.Nothing:
