@@ -29,6 +29,18 @@ class Settings:
         self.max_asteroid_velocity = 2
         self.min_asteorid_velocity = 8
 
+        self.asteroid_point = {
+            1: 'images/icons8-astronauta-96.png', 
+            2: 'images/icons8-baby-yoda-96.png', 
+            3: 'images/icons8-ciencia-ficción-96.png', 
+            4: 'images/icons8-cometa-96.png', 
+            5:'images/icons8-estrella-de-la-muerte-96.png', 
+            6: 'images/icons8-extraterrestre-96.png',
+            7: 'images/icons8-grey-96.png',
+            8: 'images/icons8-planeta-96.png',
+            9: 'images/icons8-satélites-96.png',
+            10: 'images/icons8-stormtrooper-96.png'
+        }
 
         # Game Settings
         self.FPS = 60

@@ -5,7 +5,6 @@ from settings import Settings
 import time 
 from enum import Enum
 import random
-from pygame import mixer
 
 class Level(Enum):
     One = 1
@@ -113,8 +112,7 @@ class Game():
         for asteroid in self.asteroids:
             if asteroid.reached_end():
                 self.asteroids.remove(asteroid)
-                self.punctuation += 10
-                self.avoided_asteroid += 1
+                self.punctuation += asteroid.value
 
     def create_asteroids(self):
         if len(self.asteroids) < self.max_asteroids:

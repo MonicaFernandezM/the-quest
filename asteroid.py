@@ -9,8 +9,9 @@ class Asteroid():
         self.velocity = random.randint(Settings().max_asteroid_velocity, Settings().min_asteorid_velocity)
     
         # load bmp image and get rectangle
-        image_random = random.randint(1, len(Settings().asteroid_images))
-        self.image = pg.image.load(Settings().asteroid_images[image_random - 1])
+        self.value = random.randint(1, len(Settings().asteroid_images))
+        self.image = pg.image.load(Settings().asteroid_point.get(self.value))
+
         len_random = random.randint(Settings().min_image_size, Settings().max_image_size)
         self.image = pg.transform.scale(self.image, (len_random, len_random))
         self.rect = self.image.get_rect() # asteroid real size
