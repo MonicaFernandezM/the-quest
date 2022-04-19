@@ -30,15 +30,35 @@ class Ship():
     def move(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_UP]:
-            if self.rect.top + Settings.ship_velocity > self.screen_rect.top + 10:
-                self.increaseVelocity()
-                self.rect.top -= Settings.ship_velocity
+            self.move_up()
         elif keys[pg.K_DOWN]:
-            if self.rect.bottom - Settings.ship_velocity < self.screen_rect.bottom - 10:
-                self.increaseVelocity()
-                self.rect.bottom += Settings.ship_velocity
+            self.move_down()
         else:
             Settings.ship_velocity = 1
+
+        for event in pg.event.get():
+            if event.type == pg.MOUSEBUTTONDOWN:
+                mouse = pg.mouse.get_pressed()
+                if mouse[0]:
+                    position = pg.mouse.get_pos()
+                    mouse_y = position[1]
+                    if mouse_y < self.rect.top:
+                        self.move_up()
+                    elif mouse_y > self.rect.bottom:
+                        self.move_down()
+                else:
+                    Settings.ship_velocity = 1
+
+    def move_up(self):
+        if self.rect.top + Settings.ship_velocity > self.screen_rect.top + 10:
+            self.increaseVelocity()
+            self.rect.top -= Settings.ship_velocity
+
+    def move_down(self):        
+        if self.rect.bottom - Settings.ship_velocity < self.screen_rect.bottom - 10:
+            self.increaseVelocity()
+            self.rect.bottom += Settings.ship_velocity
+
 
     def increaseVelocity(self):
         if Settings.ship_velocity <= Settings().max_ship_velocity:

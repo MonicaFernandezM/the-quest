@@ -1,4 +1,5 @@
 import pygame as pg 
+import sqlite3
 
 class Record():
      def __init__(self, score, name):

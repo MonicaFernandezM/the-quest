@@ -63,6 +63,7 @@ class Main():
     
     # Handling user's events    
     def check_events(self):
+
         for event in pg.event.get():
             if event.type == pg.QUIT or ( 
                 event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE
@@ -70,34 +71,27 @@ class Main():
                 pg.quit()
             elif event.type == pg.KEYDOWN and (event.key == pg.K_TAB or event.key == pg.K_DOWN):
                 if self.level_one_button.get_state() == State.selected:
-                    print("Boton 1")
                     self.level_two_button.set_state(State.selected)
                     self.level_one_button.set_state(State.unselected)
                 elif self.level_two_button.get_state() == State.selected:
-                    print("Boton 2")
                     self.level_three_button.set_state(State.selected)
                     self.level_two_button.set_state(State.unselected)
                 elif self.level_three_button.get_state() == State.selected:
-                    print("Boton 3")
                     self.level_four_button.set_state(State.selected)
                     self.level_three_button.set_state(State.unselected)
                 elif self.level_four_button.get_state() == State.selected:
-                    print("Boton 4")
                     self.level_one_button.set_state(State.selected)
                     self.level_four_button.set_state(State.unselected)
         
             elif event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
                 if self.level_one_button.get_state() == State.selected:
-                    print("Boton 1")
                     self.show_instructions()
                 elif self.level_two_button.get_state() == State.selected:
-                    print("Boton 2")
                     self.run_game(Level.One)
                 elif self.level_three_button.get_state() == State.selected:
-                    print("Boton 3")
                     self.run_game(Level.Two)
                 elif self.level_four_button.get_state() == State.selected:
-                    print("Boton 4")
                     self.run_game(Level.Three)
+        
 
 Main()
