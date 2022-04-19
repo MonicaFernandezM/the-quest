@@ -14,8 +14,9 @@ class Ship():
     def __init__(self, screen):
         self.screen = screen
         self.rotation_step = Rotation_Step.Nothing
+        self.settings = Settings()
         # load bmp image and get rectangle
-        self.image = pg.image.load(Settings().ship_image)
+        self.image = pg.image.load(self.settings.ship_image)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -34,35 +35,33 @@ class Ship():
         elif keys[pg.K_DOWN]:
             self.move_down()
         else:
-            Settings.ship_velocity = 1
-
-        for event in pg.event.get():
-            if event.type == pg.MOUSEBUTTONDOWN:
-                mouse = pg.mouse.get_pressed()
-                if mouse[0]:
-                    position = pg.mouse.get_pos()
-                    mouse_y = position[1]
-                    if mouse_y < self.rect.top:
-                        self.move_up()
-                    elif mouse_y > self.rect.bottom:
-                        self.move_down()
-                else:
-                    Settings.ship_velocity = 1
-
+            for event in pg.event.get():
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    mouse = pg.mouse.get_pressed()
+                    if mouse[0]:
+                        position = pg.mouse.get_pos()
+                        mouse_y = position[1]
+                        if mouse_y < self.rect.top:
+                            self.move_up()
+                        elif mouse_y > self.rect.bottom:
+                            self.move_down()
+                    else:
+                        self.settings.ship_velocity = 1        
+                
     def move_up(self):
-        if self.rect.top + Settings.ship_velocity > self.screen_rect.top + 10:
+        if self.rect.top + self.settings.ship_velocity > self.screen_rect.top + 10:
             self.increaseVelocity()
-            self.rect.top -= Settings.ship_velocity
+            self.rect.top -= self.settings.ship_velocity
 
     def move_down(self):        
-        if self.rect.bottom - Settings.ship_velocity < self.screen_rect.bottom - 10:
+        if self.rect.bottom - self.settings.ship_velocity < self.screen_rect.bottom - 10:
             self.increaseVelocity()
-            self.rect.bottom += Settings.ship_velocity
+            self.rect.bottom += self.settings.ship_velocity
 
 
     def increaseVelocity(self):
-        if Settings.ship_velocity <= Settings().max_ship_velocity:
-            Settings.ship_velocity += 1
+        if self.settings.ship_velocity <= self.settings.max_ship_velocity:
+            self.settings.ship_velocity += 1
 
     def rotate_ship(self, angle):
         width = self.rect.x + self.screen_rect.width - self.rect.width

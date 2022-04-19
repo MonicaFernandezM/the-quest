@@ -18,41 +18,42 @@ class Result(Enum):
 
 class Game():
     def __init__(self, screen, level):
+        self.settings = Settings()
         pg.mixer.init()
-        pg.mixer.music.load(Settings().music_explotion)
+        pg.mixer.music.load(self.settings.music_explotion)
         self.seconds = 0
         self.screen = screen
         self.screen_rect = screen.get_rect()
         self.ship = Ship(self.screen)
-        self.max_time = Settings().max_game_time
+        self.max_time = self.settings.max_game_time
         self.font = pg.font.Font(None, 30)
         self.punctuation = 0
-        self.lives = Settings().lives
+        self.lives = self.settings.lives
         self.game_result  = Result.Nothing
         self.start_ticks = pg.time.get_ticks() #starter tick
         self.avoided_asteroid = 0
         
         if level == Level.One:
-            self.max_asteroids = Settings().max_asteroid_one
+            self.max_asteroids = self.settings.max_asteroid_one
             self.asteroids = [Asteroid(self.screen)]
-            self.bg_image = pg.image.load(Settings().background_image_level_one)
-            self.velocity = random.randint(Settings().min_asteorid_velocity_level_one, Settings().max_asteroid_velocity_level_one)
+            self.bg_image = pg.image.load(self.settings.background_image_level_one)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_one, self.settings.max_asteroid_velocity_level_one)
             
         elif level == Level.Two:
-            self.max_asteroids = Settings().max_asteroid_two
+            self.max_asteroids = self.settings.max_asteroid_two
             self.asteroids = [
                 Asteroid(self.screen), 
                 Asteroid(self.screen)]
-            self.bg_image = pg.image.load(Settings().background_image_level_two)
-            self.velocity = random.randint(Settings().min_asteorid_velocity_level_two, Settings().max_asteroid_velocity_level_two)
+            self.bg_image = pg.image.load(self.settings.background_image_level_two)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_two, self.settings.max_asteroid_velocity_level_two)
         elif level == Level.Three:
-            self.max_asteroids = Settings().max_asteroid_three
+            self.max_asteroids = self.settings.max_asteroid_three
             self.asteroids = [
                 Asteroid(self.screen), 
                 Asteroid(self.screen),
                 Asteroid(self.screen)]
-            self.bg_image = pg.image.load(Settings().background_image_level_three)
-            self.velocity = random.randint(Settings().min_asteorid_velocity_level_three, Settings().max_asteroid_velocity_level_three)
+            self.bg_image = pg.image.load(self.settings.background_image_level_three)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_three, self.settings.max_asteroid_velocity_level_three)
 
         self.bg_rect = self.bg_image.get_rect()
 
@@ -65,9 +66,9 @@ class Game():
         self.time_text = self.font.render("Time: " + str(int(self.max_time - self.seconds)), True, (255, 255, 255))
 
         self.screen.blit(self.punctuation_text, (10, 10))
-        self.screen.blit(self.level_text, (Settings().screen_width / 4, 10))
-        self.screen.blit(self.life_text, (Settings().screen_width / 2, 10))
-        self.screen.blit(self.time_text, (Settings().screen_width * 3 / 4, 10))
+        self.screen.blit(self.level_text, (self.settings.screen_width / 4, 10))
+        self.screen.blit(self.life_text, (self.settings.screen_width / 2, 10))
+        self.screen.blit(self.time_text, (self.settings.screen_width * 3 / 4, 10))
 
         if self.game_result == Result.Nothing:
             self.ship.create()

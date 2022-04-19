@@ -15,7 +15,6 @@ class Main():
         pg.display.set_caption("The Quest")
         self.font = pg.font.Font(None, 30) 
         self.run_level_selection()
-        #self.run_game(Level.One)
 
     def run_level_selection(self):
         self.level_one_button = Button(self.screen)
@@ -58,7 +57,7 @@ class Main():
             game.update_screen()
             game.game_control()
 
-    def show_instructions():
+    def show_instructions(self):
         print("To do")
     
     # Handling user's events    
@@ -92,6 +91,29 @@ class Main():
                     self.run_game(Level.Two)
                 elif self.level_four_button.get_state() == State.selected:
                     self.run_game(Level.Three)
-        
 
+            if event.type == pg.MOUSEBUTTONDOWN:
+                mouse = pg.mouse.get_pressed()
+                if mouse[0]:
+                    position = pg.mouse.get_pos()
+                    mouse_x = position[0]
+                    mouse_y = position[1]
+
+                    if mouse_x > self.level_one_button.button_rect.left and \
+                        mouse_x < self.level_one_button.button_rect.right:
+
+                        # x location is the same for all buttons
+
+                        if mouse_y > self.level_one_button.button_rect.top and \
+                            mouse_y < self.level_one_button.button_rect.bottom:
+                            self.show_instructions()
+                        elif mouse_y > self.level_two_button.button_rect.top and \
+                            mouse_y < self.level_two_button.button_rect.bottom:
+                            self.run_game(Level.One)
+                        elif mouse_y > self.level_three_button.button_rect.top and \
+                            mouse_y < self.level_three_button.button_rect.bottom:
+                            self.run_game(Level.Two)
+                        elif mouse_y > self.level_four_button.button_rect.top and \
+                            mouse_y < self.level_four_button.button_rect.bottom:
+                            self.run_game(Level.Three)
 Main()
