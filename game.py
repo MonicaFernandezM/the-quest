@@ -2,7 +2,6 @@ import pygame as pg
 from ship import Ship 
 from asteroid import Asteroid
 from settings import Settings
-import time 
 from enum import Enum
 import random
 

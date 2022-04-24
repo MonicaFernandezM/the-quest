@@ -17,6 +17,3 @@ class Records():
     def get_records(self):
         return self.records
         # get from data base
-
-
-
