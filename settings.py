@@ -44,7 +44,7 @@ class Settings:
 
         # Game Settings
         self.FPS = 60
-        self.max_game_time = 5
+        self.max_game_time = 60
         self.lives = 3
         self.game_time = 60
         self.bar_height = 50
@@ -71,6 +71,6 @@ class Settings:
         self.max_asteroid_three = 11
         self.background_image_level_three = 'images/galaxy-g9aed1def3_1280.jpg'
         self.min_asteorid_velocity_level_three = 4
-        self.max_asteroid_velocity_level_three = 8
+        self.max_asteroid_velocity_level_three = 6
 
         self.music_explotion = 'music/sfx-impact27.mp3'
