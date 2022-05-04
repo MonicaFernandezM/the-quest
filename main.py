@@ -3,6 +3,7 @@ from game import Game
 from game import Level
 from settings import Settings
 from welcome import Welcome, Selection
+from records import Records, Record
 
 class Main():
 
@@ -10,7 +11,15 @@ class Main():
         pg.init()
         self.screen = pg.display.set_mode((Settings().screen_width, Settings().screen_height))
         pg.display.set_caption("The Quest")
-        self.run_welcome()
+
+        self.records = Records()
+        #record1 = Record("Monica", 200)
+        #self.records.add_record(record1)
+
+        record2 = Record("Sabrina", 100)
+        self.records.add_record(record2)
+
+        #self.run_welcome()
 
     def run_welcome(self):
         self.welcome = Welcome(self.screen)
