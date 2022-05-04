@@ -28,7 +28,7 @@ class Game():
         self.font = pg.font.Font(None, 30)
         self.punctuation = 0
         self.lives = self.settings.lives
-        self.game_result  = Result.Nothing
+        self.game_result = Result.Nothing
         self.start_ticks = pg.time.get_ticks() #starter tick
         self.avoided_asteroid = 0
         self.velocity = 5
@@ -99,7 +99,10 @@ class Game():
         if self.lives - 1 > -1:
             self.lives -= 1
         elif self.lives - 1 == -1:
-            self.game_result = Result.Lose
+            if self.game_result != Result.Lose:
+                pg.mixer.music.play()
+                pg.mixer.music.set_volume(0.9)
+                self.game_result = Result.Lose
     
     # Handling game structure
     def game_control(self):
@@ -132,8 +135,6 @@ class Game():
         self.explosion_rect.centerx = self.ship.rect.centerx
         self.explosion_rect.centery = self.ship.rect.centery
         self.screen.blit(self.explosion_image, self.explosion_rect)
-        pg.mixer.music.play()
-        pg.mixer.music.set_volume(0.9)
 
     def show_time(self):
         if self.game_result == Result.Nothing:

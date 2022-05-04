@@ -111,16 +111,13 @@ class Welcome():
                 self.show_instructions()
             elif mouse_y > self.level_two_button.button_rect.top and \
                 mouse_y < self.level_two_button.button_rect.bottom:
-                #self.run_game(Level.One)
                 return Selection.Level_one
             elif mouse_y > self.level_three_button.button_rect.top and \
                 mouse_y < self.level_three_button.button_rect.bottom:
-                #self.run_game(Level.Two)
                 return Selection.Level_two
             elif mouse_y > self.level_four_button.button_rect.top and \
                 mouse_y < self.level_four_button.button_rect.bottom and \
                 self.show_inst == False:
-                #self.run_game(Level.Three)
                 return Selection.Level_three
 
             elif mouse_y > self.close_button.button_rect.top and \
@@ -135,11 +132,8 @@ class Welcome():
             self.show_instructions()
             return Selection.Instruction
         elif self.level_two_button.get_state() == State.selected:
-            #self.run_game(Level.One)
             return Selection.Level_one
         elif self.level_three_button.get_state() == State.selected:
-            #self.run_game(Level.Two)
             return Selection.Level_two
         elif self.level_four_button.get_state() == State.selected:
-            #self.run_game(Level.Three)
             return Selection.Level_three
