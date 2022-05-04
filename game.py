@@ -146,7 +146,7 @@ class Game():
         planet_rect.centerx = self.screen_rect.width * 4 / 3    
         pg.draw.circle(self.screen, (235, 205, 124), (planet_rect.centerx, planet_rect.centery), self.screen_rect.width / 2)
         pg.draw.circle(self.screen, (240, 212, 139), (planet_rect.centerx + 25, planet_rect.centery), self.screen_rect.width / 2)
-    
+
     """ End condition when avoided x number of asteroids 
     def check_asteroids_avoided(self):
         if self.avoided_asteroid > 5:
