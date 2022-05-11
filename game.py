@@ -152,6 +152,38 @@ class Game():
     def did_game_end(self):
         return self.game_result
 
+    def switch_level(self, level):
+        self.seconds = 0
+        self.ship = Ship(self.screen)
+        self.lives = self.settings.lives
+        self.game_result = Result.Nothing
+        self.start_ticks = pg.time.get_ticks() #starter tick
+        self.avoided_asteroid = 0
+        
+        if level == Level.One:
+            self.max_asteroids = self.settings.max_asteroid_one
+            self.asteroids = [Asteroid(self.screen)]
+            self.bg_image = pg.image.load(self.settings.background_image_level_one)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_one, self.settings.max_asteroid_velocity_level_one)
+            
+        elif level == Level.Two:
+            self.max_asteroids = self.settings.max_asteroid_two
+            self.asteroids = [
+                Asteroid(self.screen), 
+                Asteroid(self.screen)]
+            self.bg_image = pg.image.load(self.settings.background_image_level_two)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_two, self.settings.max_asteroid_velocity_level_two)
+        
+        elif level == Level.Three:
+            self.max_asteroids = self.settings.max_asteroid_three
+            self.asteroids = [
+                Asteroid(self.screen), 
+                Asteroid(self.screen),
+                Asteroid(self.screen)]
+            self.bg_image = pg.image.load(self.settings.background_image_level_three)
+            self.velocity = random.randint(self.settings.min_asteorid_velocity_level_three, self.settings.max_asteroid_velocity_level_three)
+
+
     """ End condition when avoided x number of asteroids 
     def check_asteroids_avoided(self):
         if self.avoided_asteroid > 5:

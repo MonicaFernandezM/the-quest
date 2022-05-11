@@ -28,28 +28,12 @@ class Main():
             self.check_events()
             self.game.update_screen()
             self.game.game_control()
-            if self.game.did_game_end() == Result.Win:
+            print("result ", self.game.game_result)
+            if self.game.game_result == Result.Win:
                 if level == Selection.Level_one:
-                    #self.run_game(Level.Two)
-                    self.game = Game(self.screen, Level.Two)
+                    self.game.switch_level(Level.Two)
                 elif level == Selection.Level_two:
-                    #self.run_game(Level.Three)
-                    self.game = Game(self.screen, Level.Three)
-            
-            """if self.game != None:
-                self.game.update_screen()
-                self.game.game_control()
-                if self.game.did_game_end() == Result.Win:
-                    self.game = None 
-                    if level == Selection.Level_one:
-                        self.run_game(Level.Two)
-                    elif level == Selection.Level_two:
-                        self.run_game(Level.Three)
-                    #elif level == Selection.Level_three:
-                        #To do: finish game
-                elif self.game.did_game_end() == Result.Lose:
-                    self.game = None 
-            """
+                    self.game.switch_level(Level.Three)
     
     # Handling user's events    
     def check_events(self):
