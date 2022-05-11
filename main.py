@@ -70,4 +70,7 @@ class Main():
         elif selection == Selection.Level_three:
             self.run_game(Level.Three)
 
+    def next_level(self):
+        
+
 Main()

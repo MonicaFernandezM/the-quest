@@ -91,6 +91,7 @@ class Game():
             self.ship.rotate_ship(180, self.ship.rect)
             self.ship.move_rotated_ship(self.velocity)
             self.velocity += 5
+            #continue a next level. 
 
         pg.display.update()
 
