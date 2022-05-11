@@ -4,6 +4,8 @@ from settings import Settings
 from button import Button 
 from button import State
 from enum import Enum
+from records import Records, Record
+from game import Level
 
 class Selection(Enum):
     Instruction = 0
@@ -12,7 +14,8 @@ class Selection(Enum):
     Level_three = 3
 
 class Welcome():
-    def __init__(self, screen):
+    def __init__(self, main_ref, screen):
+        self.main_ref = main_ref
         self.screen = screen
         self.bg_level_image = pg.image.load(Settings().button_image)
         self.bg_level_rect = self.bg_level_image.get_rect()
@@ -137,3 +140,31 @@ class Welcome():
             return Selection.Level_two
         elif self.level_four_button.get_state() == State.selected:
             return Selection.Level_three
+
+    def check_events(self):
+        for event in pg.event.get():
+            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
+                pg.quit()
+            elif event.type == pg.KEYDOWN and (event.key == pg.K_TAB or event.key == pg.K_DOWN):
+                self.change_states()
+        
+            elif event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
+                selection = self.option_selected()
+                self.call_game(selection)
+
+            if event.type == pg.MOUSEBUTTONDOWN:
+                mouse = pg.mouse.get_pressed()
+                if mouse[0]:
+                    position = pg.mouse.get_pos()
+                    mouse_x = position[0]
+                    mouse_y = position[1]
+                    selection = self.handle_mouse_event(mouse_x, mouse_y)
+                    self.call_game(selection)
+            
+    def call_game(self, selection):
+        if selection == Selection.Level_one:
+            self.main_ref.run_game(Level.One)
+        elif selection == Selection.Level_two:
+            self.main_ref.run_game(Level.Two)
+        elif selection == Selection.Level_three:
+            self.main_ref.run_game(Level.Three)
